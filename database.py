@@ -15,6 +15,14 @@ with sqlite3.connect("database.db") as connection:
                     PRIMARY KEY (user_id)
     );""")
 
+    cursor.execute("""CREATE TABLE IF NOT EXISTS friends (
+                    sender TEXT NOT NULL,
+                    reciever TEXT NOT NULL,
+                    confirmed BIT,
+                    FOREIGN KEY (sender) REFERENCES users(user_id) ON UPDATE CASCADE ON DELETE CASCADE,
+                    FOREIGN KEY (sender) REFERENCES users(user_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    );""")
+
     cursor.execute("""CREATE TABLE IF NOT EXISTS subjects (
                     user_id TEXT NOT NULL,
                     subject_id TEXT NOT NULL,
