@@ -29,6 +29,7 @@ def users():
 def users_password():
     pass
 
+#also has to check for "current_class" on signup
 @app.route("/api/users/signup", methods=["POST"])
 def users_signup():
     pass

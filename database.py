@@ -10,10 +10,9 @@ with sqlite3.connect("database.db") as connection:
                     password_hash TEXT NOT NULL,
                     session_token TEXT NOT NULL,
                     image TEXT NOT NULL,
-                    year INTEGER NOT NULL,
+                    current_class TEXT NOT NULL, 
                     UNQIUE (username),
                     UNIQUE (session_token),
-                    UNIQUE (year),
                     PRIMARY KEY (user_id)
     );""")
 
@@ -30,11 +29,10 @@ with sqlite3.connect("database.db") as connection:
                     subject_id TEXT NOT NULL,
                     name TEXT NOT NULL,
                     description TEXT,
-                    year INTEGER NOT NULL,
+                    class TEXT NOT NULL,
                     FOREIGN KEY (user_id) REFERENCES users(user_id) ON UPDATE CASCADE ON DELETE CASCADE,
-                    FOREIGN KEY (year) REFERENCES users(year) ON UPDATE CASCADE ON DELETE CASCADE,
                     PRIMARY KEY (subject_id),
-                    UNIQUE (user_identifier, name)
+                    UNIQUE (user_id, name, class)
     )""")
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS exams (
